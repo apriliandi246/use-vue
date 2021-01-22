@@ -1,16 +1,15 @@
 import { onMounted, onUnmounted, ref } from "vue";
 
 export default function useFetch(endpoint) {
-   const controller = new AbortController();
-   const { signal } = controller;
-
    const data = ref();
    const isLoading = ref(true);
+   const controller = new AbortController();
+   const { signal } = controller;
 
    onMounted(async () => {
       try {
          const res = await fetch(endpoint, { signal });
-         data.value = await res.json(endpoint);
+         data.value = await res.json();
       } catch (err) {
          throw new Error(err);
       }
