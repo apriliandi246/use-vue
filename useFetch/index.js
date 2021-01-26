@@ -1,6 +1,6 @@
 import { onMounted, onUnmounted, ref } from "vue";
 
-export default function useFetch(endpoint) {
+function useFetch(endpoint) {
    const data = ref();
    const isLoading = ref(true);
    const controller = new AbortController();
@@ -19,8 +19,5 @@ export default function useFetch(endpoint) {
 
    onUnmounted(() => controller.abort());
 
-   return {
-      data,
-      isLoading,
-   };
+   return { data, isLoading };
 }
